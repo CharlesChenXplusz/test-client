@@ -13,8 +13,8 @@
 
 <body>
 <g:form url="${webRequest.contextPath}/login">
-    <input name="username" type="text" required/>
-    <input name="password" type="password" required/>
+    <input name="username" type="text" value="usera" required/>
+    <input name="password" type="password" value="usera" required/>
     <input type="submit" value="submit">
 </g:form>
 </body>

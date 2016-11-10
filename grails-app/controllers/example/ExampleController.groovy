@@ -19,12 +19,8 @@ class ExampleController extends BaseController {
     @MessageMapping("/hello1")
     @SendTo("/topic/hello1")
     protected String hello(String world) {
-        new Thread(new Runnable() {
-            @Override
-            void run() {
-                exampleService.hello()
-            }
-        }).start()
+        exampleService.hello()
+
         return "hello from controller, ${world}!"
     }
 }
