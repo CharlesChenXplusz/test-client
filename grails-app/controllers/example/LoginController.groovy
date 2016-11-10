@@ -8,16 +8,14 @@ class LoginController {
 
     def doLogin() {
         def username = params.username
-        def password = params.passwrod
-
 
         //Mock login from api
         if ("usera".equalsIgnoreCase(username)) {
             session.token = '111'
-            redirect(uri: '/example')
+            redirect(uri: '/message')
         } else if ("userb".equalsIgnoreCase(username)) {
             session.token = '222'
-            redirect(uri: '/example')
+            redirect(uri: '/message')
         } else {
             redirect(uri: '/login')
         }

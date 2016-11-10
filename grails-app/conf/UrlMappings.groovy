@@ -12,7 +12,6 @@ class UrlMappings {
 
         "/login"(controller: 'login', action: 'index', method: 'GET')
         "/login"(controller: 'login', action: 'doLogin', method: 'POST')
-        "/example"(controller: 'example', action: 'index', method: 'GET')
-        "/unsecure"(controller: 'unsecure', action: 'index', method: 'GET')
+        "/message"(controller: 'message', action: 'index', method: 'GET')
     }
 }

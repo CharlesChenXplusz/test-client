@@ -13,19 +13,19 @@
 
             client.connect({}, function () {
                 client.subscribe("/topic/hello", function (message) {
-                    console.log(message);
                     $("#helloDiv").append(JSON.parse(message.body));
                 });
             });
 
             $("#helloButton").click(function () {
-                client.send("/app/hello", {}, JSON.stringify("world"));
+                client.send("/app/hello", {}, JSON.stringify($('#msg').val()));
             });
         });
     </script>
 </head>
 
 <body>
+<input type="text" name="msg" id="msg">
 <button id="helloButton">hello</button>
 
 <div id="helloDiv"></div>

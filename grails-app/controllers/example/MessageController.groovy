@@ -6,19 +6,17 @@ import org.springframework.messaging.handler.annotation.SendTo
 /**
  * Created by charles.chen on 5/9/16.
  */
-class ExampleController extends BaseController {
+class MessageController extends BaseController {
 
     def beforeInterceptor = [action: this.&auth]
 
-    def exampleService
-
     def index() {
-        render(view: 'example')
+        render(view: 'message')
     }
 
     @MessageMapping("/hello")
     @SendTo("/topic/hello")
-    protected String hello(String world) {
+    protected String reply(String world) {
         return "hello from controller, ${world}!"
     }
 
