@@ -16,11 +16,10 @@ class ExampleController extends BaseController {
         render(view: 'example')
     }
 
-    @MessageMapping("/hello1")
-    @SendTo("/topic/hello1")
+    @MessageMapping("/hello")
+    @SendTo("/topic/hello")
     protected String hello(String world) {
-        exampleService.hello()
-
         return "hello from controller, ${world}!"
     }
+
 }

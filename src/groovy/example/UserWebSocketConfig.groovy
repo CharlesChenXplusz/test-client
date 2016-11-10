@@ -56,7 +56,7 @@ class UserWebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     void configureMessageBroker(MessageBrokerRegistry mbr) {
         mbr.enableSimpleBroker("/queue", "/topic")
         mbr.setApplicationDestinationPrefixes('/app')
-        mbr.setUserDestinationPrefix 'user'
+        mbr.setUserDestinationPrefix('/user/')
     }
 
     @Override
