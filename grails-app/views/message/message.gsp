@@ -14,6 +14,7 @@
             client.connect({}, function () {
                 client.subscribe("/topic/hello", function (message) {
                     $("#helloDiv").append(JSON.parse(message.body));
+                    $("#helloDiv").append('<br>');
                 });
             });
 
