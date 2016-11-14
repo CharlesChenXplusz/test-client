@@ -12,9 +12,9 @@
 </head>
 
 <body>
-<g:form url="${webRequest.contextPath}/login">
-    <input name="username" type="text" value="usera" required/>
-    <input name="password" type="password" value="usera" required/>
+<g:form url="${webRequest.contextPath}/j_spring_security_check">
+    <input name="j_username" type="text" value="usera" required/>
+    <input name="j_password" type="password" value="usera" required/>
     <input type="submit" value="submit">
 </g:form>
 </body>

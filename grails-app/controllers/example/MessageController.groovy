@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse
  */
 class MessageController extends BaseController {
 
-    def beforeInterceptor = [action: this.&auth]
-
     SimpMessagingTemplate brokerMessagingTemplate
 
     def index() {

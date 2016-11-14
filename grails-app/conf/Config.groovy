@@ -1,3 +1,5 @@
+import grails.plugin.springsecurity.SecurityConfigType
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -40,6 +42,9 @@ grails.views.default.codec = "html"
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
 grails.controllers.defaultScope = 'singleton'
+
+sequence.ShortenUrl.format = "%d"
+sequence.flushInterval = 30
 
 // GSP settings
 grails {
@@ -103,6 +108,8 @@ log4j.main = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
+    debug 'org.springframework'
+
     error 'org.codehaus.groovy.grails.web.servlet',        // controllers
             'org.codehaus.groovy.grails.web.pages',          // GSP
             'org.codehaus.groovy.grails.web.sitemesh',       // layouts
@@ -111,10 +118,41 @@ log4j.main = {
             'org.codehaus.groovy.grails.commons',            // core / classloading
             'org.codehaus.groovy.grails.plugins',            // plugins
             'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-            'org.springframework',
             'org.hibernate',
             'net.sf.ehcache.hibernate'
 }
 
 grails.app.context = '/'
 grails.plugin.springwebsocket.useCustomConfig = true
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.password.algorithm = 'bcrypt'
+grails.plugin.springsecurity.password.bcrypt.logrounds = 10
+
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'example.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'example.UserRole'
+grails.plugin.springsecurity.authority.className = 'example.Role'
+
+//grails.plugin.springsecurity.rejectIfNoRule = true
+//grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugin.springsecurity.auth.loginFormUrl = '/login'
+//grails.plugin.springsecurity.auth.apf.allowSessionCreation = true
+//grails.plugin.springsecurity.apf.storeLastUsername = true
+
+//grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+grails.plugin.springsecurity.interceptUrlMap = [
+        '/message'       : ['ROLE_STAFF'],
+        '/message/**'    : ['ROLE_STAFF'],
+        '/stomp/**'      : ['ROLE_STAFF'],
+        '/stomp/info'    : ['ROLE_STAFF'],
+        '/**'            : ['permitAll'],
+        '/index'         : ['permitAll'],
+        '/index.gsp'     : ['permitAll'],
+        '/login'         : ['permitAll'],
+        '/assets/**'     : ['permitAll'],
+        '/**/js/**'      : ['permitAll'],
+        '/**/css/**'     : ['permitAll'],
+        '/**/images/**'  : ['permitAll'],
+        '/**/favicon.ico': ['permitAll']
+]
